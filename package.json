@@ -1,0 +1,14 @@
+{
+  "name": "edgewords_cypress",
+  "version": "1.0.0",
+  "description": "Cypress demo for 2i Nov23",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PGy",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.6"
+  }
+}
