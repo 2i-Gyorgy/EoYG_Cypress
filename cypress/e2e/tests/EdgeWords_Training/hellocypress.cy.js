@@ -45,7 +45,7 @@ describe('template spec', function () { //A test suite
     cy.contains('button', 'Accept all').click()
   });
   
-  it.only('Second Test', function () {
+  it('Second Test', function () {
     cy.visit("https://google.com")
     cy.visit('https://www.edgewordstraining.co.uk/demo-site/')
     cy.origin('https://www.edgewordstraining.co.uk/', () => {
