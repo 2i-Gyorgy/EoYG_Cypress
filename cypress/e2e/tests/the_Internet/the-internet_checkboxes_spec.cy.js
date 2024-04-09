@@ -1,4 +1,4 @@
-describe('My first Test', () => {
+describe('Test checkbox', () => {
   it('visits checkboxes page and plays around with check boxes', () => {
     cy.visit('https://the-internet.herokuapp.com/checkboxes')
     // Get the checkbox, check if it exists

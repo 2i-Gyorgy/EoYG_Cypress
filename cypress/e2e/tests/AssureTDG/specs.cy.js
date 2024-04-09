@@ -1,8 +1,8 @@
-// describe('first step', () => {
-//   it('visit AssureTDG and see if it loads', () => {
-//     cy.visit('https://develop.d3nylssqqiptjw.amplifyapp.com/')
-//   })
-// })
+describe.skip('first step', () => {
+  it('visit AssureTDG and see if it loads', () => {
+    cy.visit('https://develop.d3nylssqqiptjw.amplifyapp.com/')
+  })
+})
 
 describe('second step', () => {
   it('', () => {
