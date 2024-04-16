@@ -1,20 +1,28 @@
-describe.only('Test add/remove elmenet', () => {
-  it('Gets, "Add/Remove Elements" and asserts', () => {
-    cy.visit('https://the-internet.herokuapp.com/')
+describe("Test add/remove elmenet page", function () {
+  beforeEach(function () {
+    // navigate to the page needs testing
+    cy.visit("http://the-internet.herokuapp.com/add_remove_elements/");
+  });
 
-    cy.contains('Add/Remove Elements').click()
+  it("Adds new element", function () {
+    // Check that there's no delete button to start with
+    cy.get(".added-manually").should("not.exist");
 
-    // Should be on a new URL which
-    // includes '/add_remove_elements/'
-    cy.url().should('include', '/add_remove_elements/')
+    // Click Add Button
+    cy.get("button").should("exist").click();
 
-    // Get the button, check if it exists
-    cy.get('button').should('exist')
+    // Check if it added new elemnt
+    cy.get(".added-manually").should("exist");
+  });
 
-    // click the button
-    cy.get('button').click()
+  it("Deletest new element", function () {
+    // Click add Button
+    cy.get("button").click();
 
-    // check if it added new elemnt
-    cy.get('.added-manually').should('exist')
-  })
-})
+    // Click Delete Button
+    cy.get(".added-manually").should("exist").click();
+
+    // Check if it deleted Delete Button
+    cy.get(".added-manually").should("not.exist");
+  });
+});
