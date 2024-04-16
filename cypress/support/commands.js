@@ -26,7 +26,7 @@
 
 Cypress.Commands.add('login', function (uname, passwd) {
     //Do the login
-    cy.get('#username').type(uname)
-    cy.get('#password').type(passwd)
+    cy.get('#username').clear().type(uname)
+    cy.get('#password').clear().type(passwd)
     cy.contains('a', 'Submit').click()
 })
