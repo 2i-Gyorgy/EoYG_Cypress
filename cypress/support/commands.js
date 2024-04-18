@@ -24,9 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', function (uname, passwd) {
-    //Do the login
-    cy.get('#username').clear().type(uname)
-    cy.get('#password').clear().type(passwd)
-    cy.contains('a', 'Submit').click()
-})
+// my custom commands
+Cypress.Commands.add("login", function (uname, passwd) {
+  //Do the login
+  cy.get("#username").clear().type(uname);
+  cy.get("#password").clear().type(passwd);
+  cy.contains("a", "Submit").click();
+});
+
+// dependencies
+require("cy-verify-downloads").addCustomCommand();

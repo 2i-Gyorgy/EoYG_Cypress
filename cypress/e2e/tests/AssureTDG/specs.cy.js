@@ -1,57 +1,103 @@
-describe("test login functionality", function () {
+Cypress.Commands.add("login", function (email, password) {
+  // visit login page
+  cy.visit("http://localhost:3000");
+  //Do the login
+  cy.get("#email-input").clear().type(email);
+  cy.get("#password-input").clear().type(password);
+  cy.get("#login-button").click();
+});
+
+describe("test login/log out functionality", function () {
   it("visits AssureTDG", function () {
-    cy.visit("https://develop.d3nylssqqiptjw.amplifyapp.com/");
+    cy.visit("http://localhost:3000");
+    // cy.clearAllCookies();
+    // cy.clearAllSessionStorage();
+    // cy.clearAllLocalStorage();
+    // cy.reload(true);
   });
 
-  it("logs in", function () {
-    cy.visit("https://develop.d3nylssqqiptjw.amplifyapp.com/");
-    cy.get("#login-button").then(($button) => {
-      if ($button.exists()) {
-        // type in login details and log in
-        cy.get("#email-input").type("joebloggs@gmail.com");
-        cy.get("#password-input").type("123456");
-        cy.get("#login-button").click();
-      }
+  before(function () {
+    cy.fixture("logins_assureTDG").then(function (data) {
+      // Putting data on Mocha.context this
+      this.email = data.email;
+      this.password = data.password;
     });
+  });
+
+  it("logs in and out", function () {
+    // call log in function
+    cy.login(this.email, this.password);
+
+    cy.get(".navbar").should("exist"); // existance of the navbar should indicate that we are logged in
+
+    cy.get("#logout-link").should("exist").click(); // log out
+    cy.get("#login-button").should("exist"); // existance of log out buton should indicate that we are logged out
+
+    // cy.clearAllLocalStorage();
   });
 });
 
-describe("second step", () => {
-  it.skip("", () => {
-    // visit login page
-    cy.visit("https://develop.d3nylssqqiptjw.amplifyapp.com/");
-    cy.get("#login-button").then(($button) => {
-      if ($button.exists()) {
-        // type in login details and log in
-        cy.get("#email-input").type("joebloggs@gmail.com");
-        cy.get("#password-input").type("123456");
-        cy.get("#login-button").click();
-      }
+describe("test light/dark theme switch", function () {
+  before(function () {
+    cy.fixture("logins_assureTDG").then(function (data) {
+      // Putting data on Mocha.context this
+      this.email = data.email;
+      this.password = data.password;
     });
-    // click Generate in menu
-    //cy.get('.nav-links-container a').eq(1).click()
-    cy.get(".nav-links-container a").contains("DATA").click();
-    //cy.get('.nav-links-container a').first().next().click()
-    // get #entries-counter
-    cy.get("#entries-counter").clear().type("256");
+  });
+  it("toggles theme and cheks if result is as expected", function () {
+    // cy.clearAllLocalStorage();
+    // call log in function
+    cy.login(this.email, this.password);
+
+    cy.get("#logout-link").next().click();
+    cy.get(".page").should("have.class", "dark");
+    cy.get("#logout-link").next().click();
+    cy.get(".page").should("have.class", "light");
+
+    // log out
+    cy.get("#logout-link").click();
+  });
+});
+
+describe.only("test data geration functionality", function () {
+  before(function () {
+    cy.fixture("logins_assureTDG").then(function (data) {
+      // Putting data on Mocha.context this
+      this.email = data.email;
+      this.password = data.password;
+    });
+  });
+  it("generates data", function () {
+    // call log in function
+    cy.login(this.email, this.password);
+
+    cy.contains("a", "DATA").click();
+    cy.get("input[id='entries-counter']").clear().type("13");
     // select Personal Template
-    cy.get(".templates-selector-light.parent div")
-      .first()
-      .children()
-      .select("Medical");
+    cy.get("select[id='templates-selector']")
+      .select(4)
+      .should("contain", "Personal");
     // click submit button
-    cy.get(".templates-selector-light.parent div")
-      .first()
-      .next()
-      .children()
-      .click();
+    cy.get("button[id='submit-template']").click();
     // click generate data
-    cy.get("#generate-values").click();
+    cy.get("button[id='generate-values']").click();
+    // click download
+    cy.get("button[id='download-button']").click();
 
-    // download
-    cy.get("#download").click();
+    // https://www.browserstack.com/docs/automate/cypress/file-download-testing#Using_verifyDownload
+    // https://www.npmjs.com/package/cy-verify-downloads
+    // verify download
+    // https://stackoverflow.com/questions/68082896/cypress-how-can-i-verify-if-the-downloaded-file-contains-name-that-is-dynamic
+    cy.verifyDownload("Personal-9DxLJV.zip");
 
-    //cy.wait(5000)
-    //cy.get('#logout-link').click()
+    // log out
+    cy.get("#logout-link").click();
   });
 });
+
+//   // download
+//   cy.get("#download").click();
+
+//   //cy.wait(5000)
+//   //cy.get('#logout-link').click()

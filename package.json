@@ -9,6 +9,7 @@
   "author": "PGy",
   "license": "ISC",
   "devDependencies": {
+    "cy-verify-downloads": "^0.2.3",
     "cypress": "^13.6.6"
   }
 }
