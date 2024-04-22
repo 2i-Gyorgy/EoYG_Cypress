@@ -95,9 +95,3 @@ describe.only("test data geration functionality", function () {
     cy.get("#logout-link").click();
   });
 });
-
-//   // download
-//   cy.get("#download").click();
-
-//   //cy.wait(5000)
-//   //cy.get('#logout-link').click()
