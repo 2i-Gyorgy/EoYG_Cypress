@@ -3,4 +3,4 @@
 /cypress/results
 /cypress/screenshots
 /cypress/videos
-logins_assureTDG
+/cypress/fixtures/logins_assureTDG.json
