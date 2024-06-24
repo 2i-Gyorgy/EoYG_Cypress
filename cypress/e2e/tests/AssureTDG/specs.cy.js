@@ -45,7 +45,7 @@ describe("test light/dark theme switch", function () {
       this.password = data.password;
     });
   });
-  it("toggles theme and cheks if result is as expected", function () {
+  it("toggles theme and checks if result is as expected", function () {
     // cy.clearAllLocalStorage();
     // call log in function
     cy.login(this.email, this.password);
