@@ -10,5 +10,12 @@ Before runing cypress test against AssureTDG:
 
 1. navigat to TDG-Generic folder in terminal and run
 2. `docker compose up`
+   also create secrets file:
+   /cypress/fixtures/logins_assureTDG.json
+   with content:
+   {
+   "email": "<username>",
+   "password": "<password>"
+   }
 
 To verify downloads I used cy-verify-downloads custom cypress command from npm package: https://www.npmjs.com/package/cy-verify-downloads
