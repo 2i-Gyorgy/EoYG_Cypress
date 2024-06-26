@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // my custom commands
-Cypress.Commands.add("login", function (uname, passwd) {
+Cypress.Commands.add("login_edgewords", function (uname, passwd) {
   //Do the login
   cy.get("#username").clear().type(uname);
   cy.get("#password").clear().type(passwd);
@@ -33,4 +33,3 @@ Cypress.Commands.add("login", function (uname, passwd) {
 });
 
 // dependencies
-require("cy-verify-downloads").addCustomCommand();

@@ -10,6 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "cy-verify-downloads": "^0.2.3",
-    "cypress": "^13.11.0"
+    "cypress": "^13.11.0",
+    "cypress-fs": "^0.2.5"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
   }
 }

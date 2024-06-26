@@ -7,14 +7,14 @@
 
 //To make custom command availabla in all test specs, place command in /cypress/support/commands.js
 
-describe('Using Custom commands', function () {
-    it('Logs in to the webdriver site', function () {
-        cy.visit('https://www.edgewordstraining.co.uk/webdriver2/sdocs/auth.php')
+describe("Using Custom commands", function () {
+  it("Logs in to the webdriver site", function () {
+    cy.visit("https://www.edgewordstraining.co.uk/webdriver2/sdocs/auth.php");
 
-        // cy.login('edgewords', 'edgewords123')
-        cy.login('webdriver', 'edgewords123')
+    // cy.login('edgewords', 'edgewords123')
+    cy.login_edgewords("webdriver", "edgewords123");
 
-        //Check login
-        cy.get('H1').should('have.text', 'Add A Record To the Database')
-    });
+    //Check login
+    cy.get("H1").should("have.text", "Add A Record To the Database");
+  });
 });
