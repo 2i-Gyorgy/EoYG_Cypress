@@ -2,7 +2,7 @@ This repo is about all about Cypress testing.
 It contains tests against the 2i AssureTDG site, the Internet site and has the excercises from the EdgeWords training.
 
 to start project run command in terminal:
-npx cypress open
+`npx cypress open`
 
 if cypress runs but doesn't show, refere to here: https://stackoverflow.com/questions/73191619/cypress-open-ui-not-visible
 

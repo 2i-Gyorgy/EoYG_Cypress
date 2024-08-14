@@ -27,9 +27,16 @@ describe("test forgot password functionality", function () {
       this.password = data.password;
     });
   });
-  it.skip("resets password", function () {
+  it("resets password", function () {
     cy.get("#forgot-button").click();
     cy.get("#email-input").clear().type(this.email);
     cy.get("#forgot-button").click();
+    cy.get("#modal-message").contains("Reset password request sent!");
+    cy.get("#modal-ok-button")
+      .should("be.visible")
+      .should("be.enabled")
+      .and("contain", "OK");
+    cy.get("#modal-ok-button").click();
+    cy.get("#modal-message").should("not.exist");
   });
 });

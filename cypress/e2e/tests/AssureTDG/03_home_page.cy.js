@@ -19,6 +19,9 @@ describe("test light/dark theme switch", function () {
     // call log in function
     cy.navigateToHomePage(this.email, this.password);
 
+    // check if we are on the home page
+    cy.get("#page-title").contains("AssureTDG Login");
+
     // cy.get("#logout-link").next().click();
     cy.get("#light-mode").should("be.visible").should("be.enabled").click();
     cy.get(".page").should("have.class", "dark");

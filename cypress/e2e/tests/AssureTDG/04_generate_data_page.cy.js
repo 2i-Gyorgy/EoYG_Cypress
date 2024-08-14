@@ -20,11 +20,17 @@ describe("test data geration functionality", function () {
     cy.navigateToDataPage(this.email, this.password);
 
     cy.contains("a", "DATA").click();
+
+    // check if we are on the Data page
+    cy.get("#title").contains("Data");
+
+    // genarate data
     cy.get("input[id='entries-counter']").clear().type("13");
     // select Personal Template
+    cy.get("select[id='templates-selector']").select(25);
     cy.get("select[id='templates-selector']")
-      .select(4)
-      .should("contain", "Personal");
+      .find(":selected")
+      .contains("Personal");
     // click submit button
     cy.get("button[id='submit-template']").click();
     // click generate data

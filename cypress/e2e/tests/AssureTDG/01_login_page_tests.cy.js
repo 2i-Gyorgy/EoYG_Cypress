@@ -3,7 +3,7 @@ describe("test login page content", function () {
     cy.visit("http://localhost:3000");
   });
   it("checks login page loads", function () {
-    // Test is page is available
+    // Test page is available
     cy.get("#page-title").contains("AssureTDG Login");
   });
   it("checks login page facilitates logging in", function () {
